@@ -20,6 +20,8 @@ import com.newsio.services.HelloService;
 @SpringBootTest(classes=Application.class)
 public class HelloControllerTests {
   private MockMvc mockMvc;
+  // Mocking dependencies is really easy in springboot you just use to @Mock annotation
+  // then @InjectMocks for the object you're unit testing
   @Mock
   private HelloService mockHelloService;
   @InjectMocks
