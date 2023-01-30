@@ -8,7 +8,11 @@ Follow the instructions at https://maven.apache.org/install.html
 
 ## Starting the development server
 Make sure you `cd` into the `spring-boot` directory
+
 ``` mvn spring-boot:run ```
+
+## Running tests
+``` mvn test ```
 
 ## Trying out endpoints
 Once the server is running, go to http://localhost:8080/swagger-ui/index.html to view all the endpoints and to easily make requests and view responses
