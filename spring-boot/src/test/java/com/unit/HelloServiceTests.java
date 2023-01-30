@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
