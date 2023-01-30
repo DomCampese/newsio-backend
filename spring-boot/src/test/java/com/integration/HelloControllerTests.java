@@ -15,7 +15,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import com.newsio.Application;
 import com.newsio.controllers.HelloController;
-import com.newsio.services.HelloService;
 
 @SpringBootTest(classes=Application.class)
 public class HelloControllerTests {
