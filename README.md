@@ -8,6 +8,7 @@ Follow the instructions at https://maven.apache.org/install.html
 
 ## Starting the development server
 Make sure you `cd` into the `spring-boot` directory
+
 ``` mvn spring-boot:run ```
 
 ## Trying out endpoints
