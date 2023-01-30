@@ -7,6 +7,7 @@ Go to to https://www.oracle.com/java/technologies/downloads/#java17 to download 
 Follow the instructions at https://maven.apache.org/install.html
 
 ## Starting the development server
+Make sure you `cd` into the `spring-boot` directory
 ``` mvn spring-boot:run ```
 
 ## Trying out endpoints
