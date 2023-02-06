@@ -28,21 +28,6 @@ public class NewsStory {
   @Temporal(TemporalType.TIMESTAMP)
   Date publishedAt;
 
-  public NewsStory(String author, String title, String description, String url,
-                   String source, String image, String category, String language,
-                   String country, Date publishedAt) {
-    this.author = author;
-    this.title = title;
-    this.description = description;
-    this.url = url;
-    this.source = source;
-    this.image = image;
-    this.category = category;
-    this.language = language;
-    this.country = country;
-    this.publishedAt = publishedAt;
-  }
-
   public String getAuthor() {
     return author;
   }

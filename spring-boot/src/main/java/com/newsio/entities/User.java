@@ -24,11 +24,6 @@ public class User {
   @OneToMany(mappedBy="user")
   private List<NewsStory> newsStories = new ArrayList<>();
 
-  public User(String username, String password) {
-    this.username = username;
-    this.password = password;
-  }
-
   public String getUsername() {
     return username;
   }
@@ -41,6 +36,7 @@ public class User {
     return password;
   }
 
+  // Service will encrypt password
   public void setPassword(String password) {
     this.password = password;
   }
