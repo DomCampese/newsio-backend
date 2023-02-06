@@ -1,4 +1,4 @@
-package com.unit;
+package com.example.unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.newsio.Application;
-import com.newsio.services.HelloService;
+import com.newsio.example.services.HelloService;
 
 @SpringBootTest(classes=Application.class)
 class HelloServiceTests {

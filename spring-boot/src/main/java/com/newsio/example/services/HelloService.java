@@ -1,4 +1,4 @@
-package com.newsio.services;
+package com.newsio.example.services;
 
 import org.springframework.stereotype.Service;
 
