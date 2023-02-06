@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -31,6 +33,9 @@ public class NewsStory {
   private String description;
   private String content;
   private String medium;
+  @ManyToOne
+  @JoinColumn(name = "User_id")
+  User user;
 
   public String getUrl() {
     return url;
@@ -142,5 +147,13 @@ public class NewsStory {
   
   public void setMedium(String medium) {
     this.medium = medium;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public User getUser() {
+    return this.user;
   }
 }
