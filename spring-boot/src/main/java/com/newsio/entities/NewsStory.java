@@ -16,24 +16,100 @@ public class NewsStory {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
-  private String author;
+  private String url;
+  private String authorsByline;
+  private String articleId;
+  private String clusterId;
+  private String source;
+  private String imageUrl;
+  private String country;
+  private String language;
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date pubDate;
+  private double score;
   private String title;
   private String description;
-  private String url;
-  private String source;
-  private String image;
-  private String category;
-  private String language;
-  private String country;
-  @Temporal(TemporalType.TIMESTAMP)
-  Date publishedAt;
+  private String content;
+  private String medium;
 
-  public String getAuthor() {
-    return author;
+  public String getUrl() {
+    return url;
   }
 
-  public void setAuthor(String author) {
-    this.author = author;
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  public String getAuthorsByline() {
+    return authorsByline;
+  }
+
+  public void setAuthorsByline(String authorsByline) {
+    this.authorsByline = authorsByline;
+  }
+
+  public String getArticleId() {
+    return articleId;
+  }
+
+  public void setArticleId(String articleId) {
+    this.articleId = articleId;
+  }
+
+  public String getClusterId() {
+    return clusterId;
+  }
+
+  public void setClusterId(String clusterId) {
+    this.clusterId = clusterId;
+  }
+
+  public String getSource() {
+    return source;
+  }
+
+  public void setSource(String source) {
+    this.source = source;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  public String getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(String language) {
+    this.language = language;
+  }
+
+  public Date getPubDate() {
+    return pubDate;
+  }
+
+  public void setPubDate(Date pubDate) {
+    this.pubDate = pubDate;
+  }
+
+  public double getScore() {
+    return score;
+  }
+
+  public void setScore(double score) {
+    this.score = score;
   }
 
   public String getTitle() {
@@ -52,59 +128,19 @@ public class NewsStory {
     this.description = description;
   }
 
-  public String getUrl() {
-    return url;
+  public String getContent() {
+    return content;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setContent(String content) {
+    this.content = content;
   }
 
-  public String getSource() {
-    return source;
+  public String getMedium() {
+    return medium;
   }
-
-  public void setSource(String source) {
-    this.source = source;
-  }
-
-  public String getImage() {
-    return image;
-  }
-
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-  public String getCategory() {
-    return category;
-  }
-
-  public void setCategory(String category) {
-    this.category = category;
-  }
-
-  public String getLanguage() {
-    return language;
-  }
-
-  public void setLanguage(String language) {
-    this.language = language;
-  }
-
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-  public Date getPublishedAt() {
-    return publishedAt;
-  }
-
-  public void setPublishedAt(Date publishedAt) {
-    this.publishedAt = publishedAt;
+  
+  public void setMedium(String medium) {
+    this.medium = medium;
   }
 }
