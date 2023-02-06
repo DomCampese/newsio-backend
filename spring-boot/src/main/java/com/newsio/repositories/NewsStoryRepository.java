@@ -1,4 +1,4 @@
-package com.newsio.example;
+package com.newsio.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
