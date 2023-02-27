@@ -1,51 +1,73 @@
 package com.newsio.entities;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name="Users")
-public class User {
+@Table(name = "`User`")
+public class User implements UserDetails {
   @Id
+  @GeneratedValue
   private Integer id;
-  @Column(nullable=false, unique=true)
-  private String username;
-  @JsonIgnore
-  @Column(nullable=false)
+  private String email;
   private String password;
   @OneToMany(mappedBy="user")
-  private List<NewsStory> newsStories = new ArrayList<>();
+  private List<NewsStory> newsStories;
+  @Enumerated(EnumType.STRING)
+  private Role role; // user 
 
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority(role.name()));
+  }
+
+  @Override
   public String getUsername() {
-    return username;
+    return email;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
+  @Override
   public String getPassword() {
     return password;
   }
 
-  // Service will encrypt password
-  public void setPassword(String password) {
-    this.password = password;
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
   }
 
-  public List<NewsStory> getNewsStories() {
-    return newsStories;
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
   }
-  
-  public void setNewsStories(List<NewsStory> newsStories) {
-    this.newsStories = newsStories;
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
   }
 }
