@@ -1,7 +1,5 @@
 package com.newsio.services;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,15 +29,11 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
   
   public AuthenticationResponse register(RegisterRequest request) {
-    // User user = User.builder()
-    //   .email(request.getEmail())
-    //   .password(passwordEncoder.encode(request.getPassword()))
-    //   .role(Role.USER)
-    //   .build();
-    User user = new User();
-    user.setEmail(request.getEmail());
-    user.setPassword(passwordEncoder.encode(request.getPassword()));
-    user.setRole(Role.USER);
+    User user = User.builder()
+      .email(request.getEmail())
+      .password(passwordEncoder.encode(request.getPassword()))
+      .role(Role.USER)
+      .build();
 
     userRepository.save(user);
     String jwtToken = jwtService.generateToken(user);
