@@ -27,6 +27,12 @@ public class SecurityConfiguration {
     http
       .csrf()
       .disable()
+      .cors()
+      .and()
+      .headers()
+      .frameOptions()
+      .disable()
+      .and()
       .authorizeHttpRequests()
       .requestMatchers("/api/v1/auth/**", "/swagger-ui/**", "/h2-ui/**", "/v3/api-docs/**") // this is our whitelist - any paths put here are NOT authenticated
       .permitAll()
