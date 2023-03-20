@@ -1,7 +1,7 @@
 package com.newsio.controllers;
 
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.newsio.entities.NewsStory;
 import com.newsio.services.NewsService;
 
+import io.jsonwebtoken.io.IOException;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/news")
 public class NewsController {
+  @Autowired
   private NewsService ns;
 
   @GetMapping("/")
@@ -23,7 +26,7 @@ public class NewsController {
   }
 
   @GetMapping("/Search")
-  public List<NewsStory> search(@PathVariable String searchTextString){
+  public List<NewsStory> search(@PathVariable String searchTextString) throws java.io.IOException{
     //ping the backend with the search text
     //then return it
     return ns.Search(searchTextString);
