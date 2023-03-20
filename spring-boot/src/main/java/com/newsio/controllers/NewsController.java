@@ -1,16 +1,31 @@
 package com.newsio.controllers;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.newsio.entities.NewsStory;
+import com.newsio.services.NewsService;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/news")
 public class NewsController {
+  private NewsService ns;
+
   @GetMapping("/")
   public String index() {
+    ns = new NewsService();
     return "Welcome to the news controller g, you can't access this unless you're logged in.";
+  }
+
+  @GetMapping("/Search")
+  public List<NewsStory> search(@PathVariable String searchTextString){
+    //ping the backend with the search text
+    //then return it
+    return ns.Search(searchTextString);
   }
 }

@@ -1,5 +1,8 @@
 package com.newsio.services;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.newsio.entities.NewsStory;
@@ -37,4 +40,17 @@ public class NewsService {
     newsStory.setUser(user);
     newsStoryRepository.save(newsStory);
   }
+
+  //funcition takes in a string to then ping the api with and then returns the results
+  public List<NewsStory> Search(String searchText){
+    //catch empty search text here
+    if(searchText.length() == 0){
+        return new LinkedList<NewsStory>();
+    }
+        //ping api here with the string given
+        //take results and then create a linkedlist of news stories 
+    
+        //then return the results here
+    return new LinkedList<NewsStory>();
+}
 }
