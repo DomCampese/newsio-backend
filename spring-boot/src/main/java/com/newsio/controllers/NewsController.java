@@ -26,7 +26,7 @@ public class NewsController {
   }
 
   @GetMapping("/Search")
-  public List<NewsStory> search(@PathVariable String searchTextString) throws java.io.IOException{
+  public List<NewsStory> search(@PathVariable String searchTextString) throws Exception{
     //ping the backend with the search text
     //then return it
     return ns.Search(searchTextString);
