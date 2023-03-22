@@ -55,7 +55,7 @@ public class NewsService {
     //get the string reponse
     String reponse = ms.sendGet(searchText);
         //NOTE need to go through the reponseresult here and serlize the String JSON to news story objects
-        //then return the results here
+        //then return the results here minor change so i can push to the right branch
     return new LinkedList<NewsStory>();
 }
 
