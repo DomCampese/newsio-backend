@@ -1,11 +1,13 @@
 package com.newsio.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.google.gson.Gson;
 import com.newsio.entities.NewsStory;
 import com.newsio.entities.User;
 import com.newsio.entities.mediaStackAPI;
@@ -54,9 +56,14 @@ public class NewsService {
     mediaStackAPI ms = getMediaStackAPI();
     //get the string reponse
     String reponse = ms.sendGet(searchText);
-        //NOTE need to go through the reponseresult here and serlize the String JSON to news story objects
-        //then return the results here minor change so i can push to the right branch
-    return new LinkedList<NewsStory>();
+    ArrayList<NewsStory> newsStorySearchResults = new ArrayList<NewsStory>();
+    //create a google gson object to use for serialization and deserialization
+    Gson gson = new Gson();
+    //NOTE: I need to find a way to break up the many results that come in and deserialize each of them.
+    //NOT DOEN YET BUT GETTING THERE
+    NewsStory currentSearchResult = gson.fromJson(reponse, NewsStory.class);
+    newsStorySearchResults.add(currentSearchResult);
+    return newsStorySearchResults;
 }
 
 //creates a new mediastack api connection and returns it
