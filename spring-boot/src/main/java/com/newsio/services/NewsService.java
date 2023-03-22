@@ -45,7 +45,7 @@ public class NewsService {
     newsStoryRepository.save(newsStory);
   }
 
-  //funcition takes in a string to then ping the api with and then returns the results
+  //function takes in a string to then ping the api with and then returns the results
   public List<NewsStory> Search(String searchText) throws Exception{
     //catch empty search text here
     if(searchText.length() == 0){
@@ -60,7 +60,7 @@ public class NewsService {
     //create a google gson object to use for serialization and deserialization
     Gson gson = new Gson();
     //NOTE: I need to find a way to break up the many results that come in and deserialize each of them.
-    //NOT DOEN YET BUT GETTING THERE
+    //NOT DONE YET BUT GETTING THERE
     NewsStory currentSearchResult = gson.fromJson(reponse, NewsStory.class);
     newsStorySearchResults.add(currentSearchResult);
     return newsStorySearchResults;
