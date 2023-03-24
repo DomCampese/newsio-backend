@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.newsio.entities.NewsStory;
+import com.newsio.models.NewsReponse;
 import com.newsio.services.NewsService;
 
 import io.jsonwebtoken.io.IOException;
@@ -26,7 +27,7 @@ public class NewsController {
   }
 
   @GetMapping("/Search")
-  public List<NewsStory> search(@PathVariable String searchTextString) throws Exception{
+  public List<NewsReponse> search(@PathVariable String searchTextString) throws Exception{
     //ping the backend with the search text
     //then return it
     return ns.Search(searchTextString);
