@@ -26,22 +26,23 @@ public class NewsService {
   }
 
   public void saveNewsStory(NewsStoryInfo info, User user) {
-    NewsStory newsStory = new NewsStory();
-    newsStory.setUrl(info.url);
-    newsStory.setAuthorsByline(info.authorsByline);
-    newsStory.setArticleId(info.articleId);
-    newsStory.setClusterId(info.clusterId);
-    newsStory.setSource(info.source);
-    newsStory.setImageUrl(info.imageUrl);
-    newsStory.setCountry(info.country);
-    newsStory.setLanguage(info.language);
-    newsStory.setPubDate(info.pubDate);
-    newsStory.setScore(info.score);
-    newsStory.setTitle(info.title);
-    newsStory.setDescription(info.description);
-    newsStory.setContent(info.content);
-    newsStory.setMedium(info.medium);
-    newsStory.setUser(user);
+    NewsStory newsStory = NewsStory.builder()
+      .url(info.url)
+      .authorsByline(info.authorsByline)
+      .articleId(info.articleId)
+      .clusterId(info.clusterId)
+      .source(info.source)
+      .imageUrl(info.imageUrl)
+      .country(info.country)
+      .language(info.language)
+      .pubDate(info.pubDate)
+      .score(info.score)
+      .title(info.title)
+      .description(info.description)
+      .content(info.content)
+      .medium(info.medium)
+      .user(user)
+      .build();
     newsStoryRepository.save(newsStory);
   }
 
