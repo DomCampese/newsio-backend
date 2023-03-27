@@ -1,10 +1,5 @@
 package com.newsio.services;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +7,6 @@ import com.google.gson.Gson;
 import com.newsio.entities.NewsStory;
 import com.newsio.models.MediaStackResponse;
 import com.newsio.models.NewsSearchResponse;
-import com.newsio.models.NewsStoryInfo;
 import com.newsio.repositories.NewsStoryRepository;
 import com.newsio.repositories.UserRepository;
 

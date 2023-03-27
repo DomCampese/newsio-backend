@@ -81,21 +81,14 @@
 			<version>8.0.0.Final</version>
 		</dependency>
 
-<<<<<<< HEAD
-=======
 		<!--  Gson: Java to JSON conversion -->
->>>>>>> WIP
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.10.1</version>
-<<<<<<< HEAD
-		</dependency>
-=======
 			<scope>compile</scope>
 		</dependency>
 		
->>>>>>> WIP
 	</dependencies>
 	<build>
 		<plugins>
