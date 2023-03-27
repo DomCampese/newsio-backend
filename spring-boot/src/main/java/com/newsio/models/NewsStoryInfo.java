@@ -1,21 +1,23 @@
 package com.newsio.models;
 
-import java.sql.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class NewsStoryInfo {
-  public Integer id;
-  public String url;
-  public String authorsByline;
-  public String articleId;
-  public String clusterId;
-  public String source;
-  public String imageUrl;
-  public String country;
-  public String language;
-  public Date pubDate;
-  public double score;
+  public String author;
   public String title;
   public String description;
-  public String content;
-  public String medium;
+  public String url;
+  public String source;
+  public String image;
+  public String category;
+  public String language;
+  public String country;
+  public String published_at;
 }
