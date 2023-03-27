@@ -1,12 +1,18 @@
 package com.newsio.services;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.newsio.entities.NewsStory;
+import com.newsio.entities.User;
 import com.newsio.models.MediaStackResponse;
 import com.newsio.models.NewsSearchResponse;
+import com.newsio.models.NewsStoryInfo;
 import com.newsio.repositories.NewsStoryRepository;
 import com.newsio.repositories.UserRepository;
 
@@ -25,26 +31,24 @@ public class NewsService {
     return newsStoryRepository.findByTitle(title);
   }
 
-  // public void saveNewsStory(NewsStoryInfo info, User user) {
-  //   NewsStory newsStory = NewsStory.builder()
-  //     .url(info.url)
-  //     .authorsByline(info.authorsByline)
-  //     .articleId(info.articleId)
-  //     .clusterId(info.clusterId)
-  //     .source(info.source)
-  //     .imageUrl(info.imageUrl)
-  //     .country(info.country)
-  //     .language(info.language)
-  //     .pubDate(info.pubDate)
-  //     .score(info.score)
-  //     .title(info.title)
-  //     .description(info.description)
-  //     .content(info.content)
-  //     .medium(info.medium)
-  //     .user(user)
-  //     .build();
-  //   newsStoryRepository.save(newsStory);
-  // }
+  public void saveNewsStory(NewsStoryInfo info, User user) {
+    DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+    LocalDateTime localDateTime = LocalDateTime.parse(info.published_at, formatter);
+    
+    NewsStory newsStory = NewsStory.builder()
+      .author(info.author)
+      .title(info.title)
+      .description(info.description)
+      .url(info.url)
+      .source(info.source)
+      .image(info.image)
+      .category(info.category)
+      .language(info.category)
+      .country(info.country)
+      .published_at(localDateTime)
+      .build();
+    newsStoryRepository.save(newsStory);
+  }
 
   //function takes in a string to then ping the api with and then returns the results
   public NewsSearchResponse search(String searchText) throws Exception {

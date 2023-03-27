@@ -1,7 +1,8 @@
 package com.newsio.entities;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -23,20 +24,17 @@ public class NewsStory {
   @Id
   @GeneratedValue
   private Integer id;
-  private String url;
-  private String authorsByline;
-  private String articleId;
-  private String clusterId;
-  private String source;
-  private String imageUrl;
-  private String country;
-  private String language;
-  private Date pubDate;
-  private double score;
-  private String title;
-  private String description;
-  private String content;
-  private String medium;
+  public String author;
+  public String title;
+  public String description;
+  public String url;
+  public String source;
+  public String image;
+  public String category;
+  public String language;
+  public String country;
+  @Column(name = "published_at_column", columnDefinition = "TIMESTAMP")
+  public LocalDateTime published_at;
   @ManyToOne(optional = true, fetch = FetchType.LAZY)
   User user;
 }
