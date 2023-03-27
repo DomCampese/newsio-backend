@@ -34,7 +34,7 @@ public class SecurityConfiguration {
       .disable()
       .and()
       .authorizeHttpRequests()
-      .requestMatchers("/**", "/api/v1/auth/**", "/swagger-ui/**", "/h2-ui/**", "/v3/api-docs/**") // this is our whitelist - any paths put here are NOT authenticated
+      .requestMatchers("/api/v1/auth/**", "/swagger-ui/**", "/h2-ui/**", "/v3/api-docs/**") // this is our whitelist - any paths put here are NOT authenticated
       .permitAll()
       .anyRequest()
       .authenticated()
