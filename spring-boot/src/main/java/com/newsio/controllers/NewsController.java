@@ -20,7 +20,7 @@ public class NewsController {
   private NewsService newsService;
 
   @GetMapping("/search")
-  public NewsSearchResponse search(@RequestParam String searchTextString, @RequestParam ArrayList<String> locationFilter, @RequestParam ArrayList<String> sourceFilter, @RequestParam ArrayList<String> categorieFilter) throws Exception {
+  public NewsSearchResponse search(@RequestParam String searchTextString, @RequestParam ArrayList<String> locationFilter, @RequestParam ArrayList<String> sourceFilter, @RequestParam ArrayList<String> categorieFilter, @RequestParam ArrayList<String> languageFilter) throws Exception {
     /*OPTIONAL FILTERS: NOTE using the - symbol infront means exclude in the API
      * filtering by location,
        filtering by source (I.e. nbc, csb, -cnn,)
@@ -34,6 +34,6 @@ public class NewsController {
         sports - Sports News
         technology - Technology News
      */
-    return newsService.search(searchTextString, locationFilter, sourceFilter, categorieFilter);
+    return newsService.search(searchTextString, locationFilter, sourceFilter, categorieFilter, languageFilter);
   }
 }

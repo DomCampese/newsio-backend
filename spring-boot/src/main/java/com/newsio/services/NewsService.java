@@ -50,9 +50,9 @@ public class NewsService {
   // }
 
   //function takes in a string to then ping the api with and then returns the results
-  public NewsSearchResponse search(String searchText, ArrayList<String> locationFilter, ArrayList<String> sourceFilter, ArrayList<String> categorieFilter) throws Exception {
+  public NewsSearchResponse search(String searchText, ArrayList<String> locationFilter, ArrayList<String> sourceFilter, ArrayList<String> categorieFilter, ArrayList<String> languageFilter) throws Exception {
     //get the string reponse
-    String reponse = mediaStackService.sendGet(searchText,locationFilter,sourceFilter,categorieFilter);
+    String reponse = mediaStackService.sendGet(searchText,locationFilter,sourceFilter,categorieFilter,languageFilter);
     MediaStackResponse serializedResponse = gson.fromJson(reponse, MediaStackResponse.class);
     return NewsSearchResponse.builder()
       .newsStories(serializedResponse.data)
