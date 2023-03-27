@@ -1,6 +1,6 @@
 package com.newsio.services;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,10 +50,9 @@ public class NewsService {
   // }
 
   //function takes in a string to then ping the api with and then returns the results
-  public NewsSearchResponse search(String searchText) throws Exception {
+  public NewsSearchResponse search(String searchText, ArrayList<String> locationFilter, ArrayList<String> sourceFilter, ArrayList<String> categorieFilter) throws Exception {
     //get the string reponse
-    String reponse = mediaStackService.sendGet(searchText);//returns the body string from the reponse mediastack sends
-    //PaginationInfo pi  = getPaginationInfo(reponse.substring(0,63));
+    String reponse = mediaStackService.sendGet(searchText,locationFilter,sourceFilter,categorieFilter);
     MediaStackResponse serializedResponse = gson.fromJson(reponse, MediaStackResponse.class);
     return NewsSearchResponse.builder()
       .newsStories(serializedResponse.data)
