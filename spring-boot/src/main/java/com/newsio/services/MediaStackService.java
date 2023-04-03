@@ -1,8 +1,10 @@
 package com.newsio.services;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,8 @@ public class MediaStackService {
     HttpClient httpClient;
 
     public String sendGet(String searchText, ArrayList<String> locationFilter, ArrayList<String> sourceFilter, ArrayList<String> categorieFilter, ArrayList<String> languageFilter) throws Exception {
-        String url = "http://api.mediastack.com/v1/news?access_key=88c7ef9c74b205e86bc9af36f0ba94cd&keywords=";
+        String sortParam = "&sort=" + URLEncoder.encode("published_desc", StandardCharsets.UTF_8);
+        String url = "http://api.mediastack.com/v1/news?access_key=88c7ef9c74b205e86bc9af36f0ba94cd" + sortParam + "&keywords=";
         //NOTE: need to go through lists of optional filtes being passed in and concat them into the uri
         url = url.concat(searchText);
 
