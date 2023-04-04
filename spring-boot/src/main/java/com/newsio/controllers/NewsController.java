@@ -19,21 +19,23 @@ public class NewsController {
   @Autowired
   private NewsService newsService;
 
+  /* 
+   * Let's just keep this as a simple passthrough - the frontend is responsible for making
+   * things into comma separated lists (as it's actually harder to send arrays as) query
+   * params.
+   */
   @GetMapping("/search")
-  public NewsSearchResponse search(@RequestParam String searchTextString, @RequestParam ArrayList<String> locationFilter, @RequestParam ArrayList<String> sourceFilter, @RequestParam ArrayList<String> categorieFilter, @RequestParam ArrayList<String> languageFilter) throws Exception {
-    /*OPTIONAL FILTERS: NOTE using the - symbol infront means exclude in the API
-     * filtering by location,
-       filtering by source (I.e. nbc, csb, -cnn,)
-       filtering by predetermined categories like sports or technology.
-       Categories the API supports:
-        general - Uncategorized News
-        business - Business News
-        entertainment - Entertainment News
-        health - Health News
-        science - Science News
-        sports - Sports News
-        technology - Technology News
-     */
-    return newsService.search(searchTextString, locationFilter, sourceFilter, categorieFilter, languageFilter);
+  public NewsSearchResponse search(
+    @RequestParam String sources,
+    @RequestParam String categories,
+    @RequestParam String countries,
+    @RequestParam String languages,
+    @RequestParam String keywords,
+    @RequestParam String date,
+    @RequestParam String sort,
+    @RequestParam String limit,
+    @RequestParam String offset
+  ) throws Exception {
+    return newsService.search(sources, categories, countries, languages, keywords, date, sort, limit, offset);
   }
 }

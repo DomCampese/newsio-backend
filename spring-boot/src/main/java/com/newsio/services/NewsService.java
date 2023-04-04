@@ -49,11 +49,20 @@ public class NewsService {
   //   newsStoryRepository.save(newsStory);
   // }
 
-  //function takes in a string to then ping the api with and then returns the results
-  public NewsSearchResponse search(String searchText, ArrayList<String> locationFilter, ArrayList<String> sourceFilter, ArrayList<String> categorieFilter, ArrayList<String> languageFilter) throws Exception {
-    //get the string reponse
-    String reponse = mediaStackService.sendGet(searchText,locationFilter,sourceFilter,categorieFilter,languageFilter);
-    MediaStackResponse serializedResponse = gson.fromJson(reponse, MediaStackResponse.class);
+  public NewsSearchResponse search(
+    String sources,
+    String categories,
+    String countries,
+    String languages,
+    String keywords,
+    String date,
+    String sort,
+    String limit,
+    String offset
+  ) throws Exception {
+    
+    String response = mediaStackService.sendGet(sources, categories, countries, languages, keywords, date, sort, limit, offset);
+    MediaStackResponse serializedResponse = gson.fromJson(response, MediaStackResponse.class);
     return NewsSearchResponse.builder()
       .newsStories(serializedResponse.data)
       .build();
