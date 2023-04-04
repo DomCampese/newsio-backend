@@ -28,15 +28,15 @@ public class NewsController {
    */
   @GetMapping("/search")
   public NewsSearchResponse search(
-    @RequestParam String sources,
-    @RequestParam String categories,
-    @RequestParam String countries,
-    @RequestParam String languages,
-    @RequestParam String keywords,
-    @RequestParam String date,
-    @RequestParam String sort,
-    @RequestParam String limit,
-    @RequestParam String offset
+    @RequestParam(required = false) String sources,
+    @RequestParam(required = false) String categories,
+    @RequestParam(required = false) String countries,
+    @RequestParam(required = false) String languages,
+    @RequestParam(required = false) String keywords,
+    @RequestParam(required = false) String date,
+    @RequestParam(required = false) String sort,
+    @RequestParam(required = false) String limit,
+    @RequestParam(required = false) String offset
   ) throws Exception {
     return newsService.search(sources, categories, countries, languages, keywords, date, sort, limit, offset);
   }

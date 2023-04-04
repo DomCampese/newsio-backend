@@ -25,8 +25,8 @@ public class MediaStackService {
         String limit,
         String offset
     ) throws Exception {
-        StringBuilder url = new StringBuilder("http://api.mediastack.com/v1/new?");
-        AddQueryParam(url, "accessKey", "access_key=88c7ef9c74b205e86bc9af36f0ba94cd");
+        StringBuilder url = new StringBuilder("http://api.mediastack.com/v1/news?");
+        AddQueryParam(url, "access_key", "88c7ef9c74b205e86bc9af36f0ba94cd");
         AddQueryParam(url, "sources", sources);
         AddQueryParam(url, "categories", categories);
         AddQueryParam(url, "countries", countries);
@@ -36,6 +36,8 @@ public class MediaStackService {
         AddQueryParam(url, "sort", sort);
         AddQueryParam(url, "limit", limit);
         AddQueryParam(url, "offset", offset);
+
+        System.out.println("Fetching " + url.toString());
 
         HttpRequest request = HttpRequest.newBuilder()
             .GET()
@@ -53,7 +55,7 @@ public class MediaStackService {
             return;
         }
         String encodedValue = URLEncoder.encode(value, StandardCharsets.UTF_8);
-        url.append("&").append(key).append(encodedValue);
+        url.append("&").append(key).append("=").append(encodedValue);
     }
     
 }
