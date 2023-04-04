@@ -88,6 +88,13 @@
 			<version>2.10.1</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!--  dependency to automatically deserialize json -->
+		<dependency> 
+      		<groupId>org.codehaus.jackson</groupId>
+      		<artifactId>jackson-mapper-asl</artifactId>
+      		<version>1.9.13</version>
+		</dependency>
 		
 	</dependencies>
 	<build>
