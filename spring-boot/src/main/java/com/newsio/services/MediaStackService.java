@@ -14,17 +14,46 @@ public class MediaStackService {
     @Autowired
     HttpClient httpClient;
 
-    public String sendGet(String searchText) throws Exception {
-        String sortParam = "&sort=" + URLEncoder.encode("published_desc", StandardCharsets.UTF_8);
-        String languageParam = "&languages=en";
-        String url = "http://api.mediastack.com/v1/news?access_key=88c7ef9c74b205e86bc9af36f0ba94cd" + sortParam + languageParam + "&language=en&keywords=";
+    public String sendGet(
+        String sources,
+        String categories,
+        String countries,
+        String languages,
+        String keywords,
+        String date,
+        String sort,
+        String limit,
+        String offset
+    ) throws Exception {
+        StringBuilder url = new StringBuilder("http://api.mediastack.com/v1/new?");
+        AddQueryParam(url, "accessKey", "access_key=88c7ef9c74b205e86bc9af36f0ba94cd");
+        AddQueryParam(url, "sources", sources);
+        AddQueryParam(url, "categories", categories);
+        AddQueryParam(url, "countries", countries);
+        AddQueryParam(url, "languages", languages);
+        AddQueryParam(url, "keywords", keywords);
+        AddQueryParam(url, "date", date);
+        AddQueryParam(url, "sort", sort);
+        AddQueryParam(url, "limit", limit);
+        AddQueryParam(url, "offset", offset);
+
         HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create(url.concat(URLEncoder.encode(searchText, StandardCharsets.UTF_8))))
-                .setHeader("User-Agent", "Java 11 HttpClient Bot")
-                .build();
+            .GET()
+            .uri(URI.create(url.toString()))
+            .setHeader("User-Agent", "Java 11 HttpClient Bot")
+            .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
+
+    private void AddQueryParam(StringBuilder url, String key, String value) {
+        // Skip params with no value
+        if (value == null || value.equals("")) {
+            return;
+        }
+        String encodedValue = URLEncoder.encode(value, StandardCharsets.UTF_8);
+        url.append("&").append(key).append(encodedValue);
+    }
+    
 }

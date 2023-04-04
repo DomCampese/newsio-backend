@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.newsio.entities.NewsStory;
-import com.newsio.entities.User;
 import com.newsio.models.MediaStackResponse;
 import com.newsio.models.NewsSearchResponse;
 import com.newsio.models.NewsStoryInfo;
@@ -56,12 +55,20 @@ public class NewsService {
     return newsStoryRepository.findAll();
   }
 
-  //function takes in a string to then ping the api with and then returns the results
-  public NewsSearchResponse search(String searchText) throws Exception {
-    //get the string reponse
-    String reponse = mediaStackService.sendGet(searchText);//returns the body string from the reponse mediastack sends
-    //PaginationInfo pi  = getPaginationInfo(reponse.substring(0,63));
-    MediaStackResponse serializedResponse = gson.fromJson(reponse, MediaStackResponse.class);
+  public NewsSearchResponse search(
+    String sources,
+    String categories,
+    String countries,
+    String languages,
+    String keywords,
+    String date,
+    String sort,
+    String limit,
+    String offset
+  ) throws Exception {
+    
+    String response = mediaStackService.sendGet(sources, categories, countries, languages, keywords, date, sort, limit, offset);
+    MediaStackResponse serializedResponse = gson.fromJson(response, MediaStackResponse.class);
     return NewsSearchResponse.builder()
       .newsStories(serializedResponse.data)
       .build();
