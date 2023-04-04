@@ -2,6 +2,7 @@ package com.newsio.services;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class NewsService {
     return newsStoryRepository.findByTitle(title);
   }
 
-  public void saveNewsStory(NewsStoryInfo info, User user) {
+  public void saveNewsStory(NewsStoryInfo info) { // (User user) -> removed unused parameter
     DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
     LocalDateTime localDateTime = LocalDateTime.parse(info.published_at, formatter);
     
@@ -47,6 +48,12 @@ public class NewsService {
       .published_at(localDateTime)
       .build();
     newsStoryRepository.save(newsStory);
+
+  }
+
+  // returns all saved stories
+  public List<NewsStory> getSavedNews() {
+    return newsStoryRepository.findAll();
   }
 
   //function takes in a string to then ping the api with and then returns the results
