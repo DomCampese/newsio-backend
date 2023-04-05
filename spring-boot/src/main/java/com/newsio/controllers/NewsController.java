@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.newsio.entities.NewsStory;
+import com.newsio.entities.User;
 import com.newsio.models.NewsSearchResponse;
 import com.newsio.models.NewsStoryInfo;
 import com.newsio.services.NewsService;
@@ -47,11 +48,15 @@ public class NewsController {
     newsService.saveNewsStory(info);
 
   }
+  @PostMapping("/unsave")
+  public void unsave(@RequestBody NewsStoryInfo info){
+    newsService.unsaveNewsStory(info);
+  }
 
   // Simple method to return full list of saved news
   @GetMapping("/getSavedNews")
   public NewsSearchResponse getSavedNews() {
-    System.out.println("GETTING SAVED NEWS");
     return newsService.getSavedNews();
   }
+
 }

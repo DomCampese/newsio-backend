@@ -51,9 +51,19 @@ public class NewsService {
 
   }
 
+  public void unsaveNewsStory(NewsStoryInfo info) {
+    List<NewsStory> list = newsStoryRepository.findAll();
+
+    for(NewsStory story : list) {
+      if(story.published_at.toString().equals(info.published_at) && story.title.equals(info.title)){
+        newsStoryRepository.delete(story);
+      }
+    }
+    
+  }
+
   // returns all saved stories
   public NewsSearchResponse getSavedNews() {
-    System.out.println("GET SAVED NEWS CALLED");
     List<NewsStory> stories = newsStoryRepository.findAll();
     // converts to ArrayList of NewsStoryInfo to be formatted into NewsSearchResponse
     ArrayList<NewsStoryInfo> infoList = new ArrayList<>();
