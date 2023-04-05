@@ -23,4 +23,5 @@ public class NewsStoryInfo {
   public String language;
   public String country;
   public String published_at;
+
 }

@@ -50,7 +50,8 @@ public class NewsController {
 
   // Simple method to return full list of saved news
   @GetMapping("/getSavedNews")
-  public List<NewsStory> getSavedNews() {
+  public NewsSearchResponse getSavedNews() {
+    System.out.println("GETTING SAVED NEWS");
     return newsService.getSavedNews();
   }
 }

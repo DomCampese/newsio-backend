@@ -3,6 +3,7 @@ package com.newsio.services;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,8 +53,30 @@ public class NewsService {
   }
 
   // returns all saved stories
-  public List<NewsStory> getSavedNews() {
-    return newsStoryRepository.findAll();
+  public NewsSearchResponse getSavedNews() {
+    System.out.println("GET SAVED NEWS CALLED");
+    List<NewsStory> stories = newsStoryRepository.findAll();
+    // converts to ArrayList of NewsStoryInfo to be formatted into NewsSearchResponse
+    ArrayList<NewsStoryInfo> infoList = new ArrayList<>();
+
+    for(NewsStory currNews : stories) {
+      System.out.println(currNews.title);
+      infoList.add(NewsStoryInfo.builder()
+                  .author(currNews.author)
+                  .title(currNews.title)
+                  .description(currNews.description)
+                  .url(currNews.url)
+                  .source(currNews.source)
+                  .image(currNews.image)
+                  .category(currNews.category)
+                  .language(currNews.category)
+                  .country(currNews.country)
+                  .published_at(currNews.published_at.toString())
+                  .build());
+      
+    }
+
+    return NewsSearchResponse.builder().newsStories(infoList).build();
   }
 
   //function takes in a string to then ping the api with and then returns the results
