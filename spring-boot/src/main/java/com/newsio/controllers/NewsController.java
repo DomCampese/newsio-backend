@@ -1,6 +1,5 @@
 package com.newsio.controllers;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.newsio.entities.NewsStory;
-import com.newsio.entities.User;
 import com.newsio.models.NewsSearchResponse;
 import com.newsio.models.NewsStoryInfo;
 import com.newsio.services.NewsService;
@@ -58,5 +55,4 @@ public class NewsController {
   public NewsSearchResponse getSavedNews() {
     return newsService.getSavedNews();
   }
-
 }
