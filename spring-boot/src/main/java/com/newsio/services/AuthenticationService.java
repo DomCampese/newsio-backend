@@ -1,6 +1,8 @@
 package com.newsio.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,7 +30,12 @@ public class AuthenticationService {
   @Autowired
   private final AuthenticationManager authenticationManager;
   
-  public AuthenticationResponse register(RegisterRequest request) {
+  public ResponseEntity<AuthenticationResponse> register(RegisterRequest request) {
+    boolean isEmailDuplicate = userRepository.findByEmail(request.getEmail()).isPresent();
+    if (isEmailDuplicate) {
+      return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+    }
+    
     User user = User.builder()
       .firstName(request.getFirstName())
       .lastName(request.getLastName())
@@ -39,9 +46,10 @@ public class AuthenticationService {
 
     userRepository.save(user);
     String jwtToken = jwtService.generateToken(user);
-    return AuthenticationResponse.builder()
+    AuthenticationResponse response = AuthenticationResponse.builder()
       .token(jwtToken)
       .build();
+    return new ResponseEntity<AuthenticationResponse>(response, HttpStatus.OK);
   }
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
