@@ -2,8 +2,6 @@ package com.newsio.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-// import io.swagger.v3.oas.models.annotations.OpenAPI31;
-// import jakarta.persistence.PostLoad;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
