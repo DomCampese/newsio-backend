@@ -31,7 +31,7 @@ public class NewsService {
     return newsStoryRepository.findByTitle(title);
   }
 
-  public void saveNewsStory(NewsStoryInfo info) { // (User user) -> removed unused parameter
+  public void saveNewsStory(NewsStoryInfo info, String email) { // (User user) -> removed unused parameter
     DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
     LocalDateTime localDateTime = LocalDateTime.parse(info.published_at, formatter);
     
@@ -46,16 +46,17 @@ public class NewsService {
       .language(info.category)
       .country(info.country)
       .published_at(localDateTime)
+      .email(email)
       .build();
     newsStoryRepository.save(newsStory);
 
   }
 
-  public void unsaveNewsStory(NewsStoryInfo info) {
+  public void unsaveNewsStory(NewsStoryInfo info, String email) {
     List<NewsStory> list = newsStoryRepository.findAll();
 
     for(NewsStory story : list) {
-      if(story.published_at.toString().equals(info.published_at) && story.title.equals(info.title)){
+      if(story.published_at.toString().equals(info.published_at) && story.title.equals(info.title) && email.equals(story.email)){
         newsStoryRepository.delete(story);
       }
     }
@@ -63,14 +64,15 @@ public class NewsService {
   }
 
   // returns all saved stories
-  public NewsSearchResponse getSavedNews() {
+  public NewsSearchResponse getSavedNews(String email) {
     List<NewsStory> stories = newsStoryRepository.findAll();
     // converts to ArrayList of NewsStoryInfo to be formatted into NewsSearchResponse
     ArrayList<NewsStoryInfo> infoList = new ArrayList<>();
 
     for(NewsStory currNews : stories) {
-      System.out.println(currNews.title);
-      infoList.add(NewsStoryInfo.builder()
+      // make sure it is the right user that saved
+      if (email.equals(currNews.email)){
+        infoList.add(NewsStoryInfo.builder()
                   .author(currNews.author)
                   .title(currNews.title)
                   .description(currNews.description)
@@ -82,6 +84,7 @@ public class NewsService {
                   .country(currNews.country)
                   .published_at(currNews.published_at.toString())
                   .build());
+      }
       
     }
 

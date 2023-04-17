@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import com.newsio.models.NewsSearchResponse;
 import com.newsio.models.NewsStoryInfo;
@@ -41,18 +42,18 @@ public class NewsController {
 
   // JSON object from front end deserializes automaticall into NewsStoryInfo object
   @PostMapping("/save")
-  public void save(@RequestBody NewsStoryInfo info) {
-    newsService.saveNewsStory(info);
+  public void save(@RequestBody NewsStoryInfo info, @RequestHeader("Email") String email) {
+    newsService.saveNewsStory(info, email);
 
   }
   @PostMapping("/unsave")
-  public void unsave(@RequestBody NewsStoryInfo info){
-    newsService.unsaveNewsStory(info);
+  public void unsave(@RequestBody NewsStoryInfo info, @RequestHeader("Email") String email){
+    newsService.unsaveNewsStory(info, email);
   }
 
   // Simple method to return full list of saved news
   @GetMapping("/getSavedNews")
-  public NewsSearchResponse getSavedNews() {
-    return newsService.getSavedNews();
+  public NewsSearchResponse getSavedNews(@RequestHeader("Email") String email) {
+    return newsService.getSavedNews(email);
   }
 }

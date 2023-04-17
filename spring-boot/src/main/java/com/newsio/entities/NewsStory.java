@@ -33,8 +33,11 @@ public class NewsStory {
   public String category;
   public String language;
   public String country;
+  // provided by user that saves
+  public String email;
   @Column(name = "published_at_column", columnDefinition = "TIMESTAMP")
   public LocalDateTime published_at;
   @ManyToOne(optional = true, fetch = FetchType.LAZY)
   User user;
+
 }
