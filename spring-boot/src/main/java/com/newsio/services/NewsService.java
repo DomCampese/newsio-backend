@@ -38,7 +38,7 @@ public class NewsService {
     NewsStory newsStory = NewsStory.builder()
       .author(info.author)
       .title(info.title)
-      .description(info.description)
+      .description(info.description.length() < 252 ? info.description : info.description.substring(0, 252) + "...")
       .url(info.url)
       .source(info.source)
       .image(info.image)
