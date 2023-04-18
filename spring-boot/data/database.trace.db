@@ -915,3 +915,6 @@ insert into news_stories (author, category, country, description, image, languag
 2023-04-12 02:17:43 jdbc[23]: exception
 org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "'Elon Musk said that Twitter will finally move to remove the legacy blue checkma... (445)"; SQL statement:
 insert into news_stories (author, category, country, description, image, language, published_at_column, source, title, url, "user_id", id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [22001-214]
+2023-04-17 20:08:20 jdbc[133]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'Arizona Sen.\\00a0Kyrsten Sinema\\00a0reported raising just over $2.1 million i... (351)"; SQL statement:
+insert into news_stories (author, category, country, description, image, language, published_at_column, source, title, url, "user_id", id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [22001-214]
