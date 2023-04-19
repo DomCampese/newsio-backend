@@ -26,7 +26,7 @@ public class MediaStackService {
         String offset
     ) throws Exception {
         StringBuilder url = new StringBuilder("http://api.mediastack.com/v1/news?");
-        AddQueryParam(url, "access_key", "88c7ef9c74b205e86bc9af36f0ba94cd");
+        AddQueryParam(url, "access_key", "029e185418a52da4afaa46a8b778f0c6"); //029e185418a52da4afaa46a8b778f0c6(new key) //88c7ef9c74b205e86bc9af36f0ba94cd (old key 484/500)
         AddQueryParam(url, "sources", sources);
         AddQueryParam(url, "categories", categories);
         AddQueryParam(url, "countries", countries);
